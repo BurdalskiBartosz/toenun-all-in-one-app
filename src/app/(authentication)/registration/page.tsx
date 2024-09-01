@@ -18,7 +18,6 @@ export default function Registration() {
 
   const onSubmit = (data: RegistrationFormType) => {
     console.log(data);
-    console.log(errors, "elo");
   };
   return (
     <div className="flex grow flex-col">

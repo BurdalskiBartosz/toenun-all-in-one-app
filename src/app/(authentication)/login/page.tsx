@@ -17,7 +17,6 @@ export default function Login() {
 
   const onSubmit = (data: LoginFormType) => {
     console.log(data);
-    console.log(errors, "elo");
   };
 
   return (
