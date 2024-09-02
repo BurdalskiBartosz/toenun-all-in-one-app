@@ -6,21 +6,20 @@ declare module "next-auth" {
       id: string;
       token: string;
       email: string;
-    };
+    } & DefaultSession["user"];
   }
   interface User {
     id: string;
-    token: string;
     email: string;
   }
 }
 
-// declare module "next-auth/jwt" {
-//   interface JWT {
-//     user: {
-//       id: string;
-//       token: string;
-//       email: string;
-//     };
-//   }
-// }
+declare module "next-auth/jwt" {
+  interface JWT {
+    user: {
+      id: string;
+      token: string;
+      email: string;
+    };
+  }
+}

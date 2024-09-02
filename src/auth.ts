@@ -1,11 +1,11 @@
 import NextAuth from "next-auth";
-import type { Provider } from "next-auth/providers";
+import { Provider } from "next-auth/providers";
 import Credentials from "next-auth/providers/credentials";
+import { LoginFormType } from "./types/forms";
 
-const getUser = async () => {
+const getUser = async (data: LoginFormType) => {
   return {
-    id: "Admin123",
-    token: "123",
+    id: "db5ffce7-5685-4dbb-ae5b-ad336e670031",
     email: "bosokpl13@gmail.com",
   };
 };
@@ -17,9 +17,16 @@ const providers: Provider[] = [
       password: {},
     },
     authorize: async (credentials) => {
+      if (!credentials) return null;
+
       let user = null;
 
-      user = await getUser();
+      const data = {
+        email: credentials.email as string,
+        password: credentials.password as string,
+      };
+
+      user = await getUser(data);
 
       return user;
     },
@@ -33,16 +40,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     jwt({ token, user }) {
-      console.log(token, user, "jwt");
       if (user) {
-        // User is available during sign-in
         token.id = user.id;
       }
       return token;
     },
     session({ session, token }) {
-      console.log(session, "session");
-      console.log(token, "token");
+      session.user.id = token.id;
       return session;
     },
   },
