@@ -21,29 +21,29 @@ export default function Registration() {
   };
   return (
     <div className="flex grow flex-col">
-      <h1 className="mb-10 text-[3.5rem] text-gray-600">Zarejestruj się</h1>
+      <h1 className="mb-10 text-[3.5rem] text-gray-600">Sign up</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-9">
         <Input
           label="Login"
-          placeholder="Wprowadź login..."
+          placeholder="Enter your login..."
           error={errors.login?.message}
           {...register("login")}
         />
         <Input
           label="Email"
-          placeholder="Wprowadź adres email..."
+          placeholder="Enter your email..."
           error={errors.email?.message}
           {...register("email")}
         />
         <Input
           label="Password"
-          placeholder="Wprowadź hasło..."
+          placeholder="Enter your password..."
           error={errors.password?.message}
           {...register("password")}
         />
         <Input
           label="Confirm password"
-          placeholder="Wprowadź ponownie hasło..."
+          placeholder="Confirm password..."
           error={errors.confirmPassword?.message}
           {...register("confirmPassword")}
         />
@@ -52,7 +52,7 @@ export default function Registration() {
         </button>
       </form>
       <div className="text-md mt-10 flex justify-center text-gray-600">
-        <p className="mr-2">Posiadasz konto ?</p>
+        <p className="mr-2">Have an account?</p>
         <Link className="font-bold" href={"/login"}>
           Login
         </Link>
