@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { FC } from "react";
 import type { LogoProps } from "./types";
 
-const Logo: FC<LogoProps> = ({ width, height }) => {
+export default function Logo({ width, height }: LogoProps) {
   return (
     <Link className=" " href={"/"}>
       <Image
@@ -14,6 +13,4 @@ const Logo: FC<LogoProps> = ({ width, height }) => {
       />
     </Link>
   );
-};
-
-export default Logo;
+}

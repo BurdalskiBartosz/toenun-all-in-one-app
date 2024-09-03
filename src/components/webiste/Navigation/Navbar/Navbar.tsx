@@ -1,7 +1,7 @@
-import Navlink from "../Navlink";
 import { websiteRoutes } from "@/constants";
+import Navlink from "../Navlink";
 
-const Navbar = () => {
+export default function Navbar() {
   return (
     <nav className="fixed left-0 right-0 top-0 flex border-b border-black">
       <ul className="grow-1 m-0 ml-auto flex max-w-[200px] list-none justify-between bg-red-600 p-0">
@@ -13,6 +13,4 @@ const Navbar = () => {
       </ul>
     </nav>
   );
-};
-
-export default Navbar;
+}

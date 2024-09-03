@@ -1,9 +1,9 @@
 import { appRoutes } from "@/constants";
 import Link from "next/link";
 
-const SideNav = () => {
+export default async function SideNav() {
   return (
-    <div className="sticky top-1 ml-1  mt-1 flex h-[calc(100vh_-_8px)] w-[150px] flex-col overflow-hidden rounded-xl border-[2px]  border-black  bg-white shadow-2xl">
+    <div className="sticky top-1 ml-1 mt-1 flex h-[calc(100vh_-_8px)] w-[150px] flex-col overflow-hidden rounded-xl border-[2px] border-black bg-white shadow-2xl">
       <nav>
         <ul className="flex list-none flex-col">
           {appRoutes.map((route, i) => {
@@ -35,6 +35,4 @@ const SideNav = () => {
       </div>
     </div>
   );
-};
-
-export default SideNav;
+}
