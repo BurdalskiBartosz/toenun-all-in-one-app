@@ -1,7 +1,7 @@
 import { appRoutes } from "@/constants";
 import Link from "next/link";
 
-export default async function SideNav() {
+export default function SideNav() {
   return (
     <div className="sticky top-1 ml-1 mt-1 flex h-[calc(100vh_-_8px)] w-[150px] flex-col overflow-hidden rounded-xl border-[2px] border-black bg-white shadow-2xl">
       <nav>
