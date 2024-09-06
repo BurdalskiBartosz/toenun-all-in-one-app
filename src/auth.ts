@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import { Provider } from "next-auth/providers";
 import Credentials from "next-auth/providers/credentials";
 import { LoginFormType } from "./types/forms";
@@ -33,6 +33,23 @@ const providers: Provider[] = [
   }),
 ];
 
+const callbacks = (): NextAuthConfig["callbacks"] => {
+  return {
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (token.sub && session.user) {
+        session.user.id = token.id as string;
+      }
+      return session;
+    },
+  };
+};
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers,
   pages: {
@@ -41,16 +58,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
   },
-  callbacks: {
-    jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-      }
-      return token;
-    },
-    session({ session, token }) {
-      session.user.id = token.id as string;
-      return session;
-    },
-  },
+  callbacks: callbacks(),
 });

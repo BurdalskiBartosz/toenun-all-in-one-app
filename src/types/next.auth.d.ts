@@ -10,13 +10,3 @@ declare module "next-auth" {
     user: User;
   }
 }
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    user: {
-      id: string;
-      token: string;
-      email: string;
-    };
-  }
-}
