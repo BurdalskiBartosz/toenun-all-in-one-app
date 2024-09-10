@@ -5,7 +5,7 @@ import Credentials from "next-auth/providers/credentials";
 const getUser = async () => {
   return {
     id: "db5ffce7-5685-4dbb-ae5b-ad336e670031",
-    email: "bosokpl13@gmail.com",
+    email: "admin123@gmail.com",
   };
 };
 
