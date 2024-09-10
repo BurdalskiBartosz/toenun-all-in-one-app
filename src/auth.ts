@@ -1,9 +1,8 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import { Provider } from "next-auth/providers";
 import Credentials from "next-auth/providers/credentials";
-import { LoginFormType } from "./types/forms";
 
-const getUser = async (data: LoginFormType) => {
+const getUser = async () => {
   return {
     id: "db5ffce7-5685-4dbb-ae5b-ad336e670031",
     email: "bosokpl13@gmail.com",
@@ -21,12 +20,7 @@ const providers: Provider[] = [
 
       let user = null;
 
-      const data = {
-        email: credentials.email as string,
-        password: credentials.password as string,
-      };
-
-      user = await getUser(data);
+      user = await getUser();
 
       return user;
     },
