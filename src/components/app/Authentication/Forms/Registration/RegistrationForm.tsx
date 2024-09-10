@@ -45,7 +45,7 @@ export default function RegistrationForm() {
         {...register("confirmPassword")}
       />
       <button className="mt-2 rounded-lg bg-black p-3 text-white">
-        Zarejestruj się
+        Sign up
       </button>
     </form>
   );
