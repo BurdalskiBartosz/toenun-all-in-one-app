@@ -1,4 +1,5 @@
 import SideNav from "@/components/app/Navigations/SideNav";
+import Topbar from "@/components/app/Navigations/Topbar";
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 
@@ -13,9 +14,12 @@ export default function AppLayout({
   children: ReactNode;
 }>) {
   return (
-    <section className="flex bg-black">
-      <SideNav />
-      <main className="grow">{children}</main>
+    <section className="bg-dark flex flex-col gap-y-1 p-1">
+      <Topbar>Test</Topbar>
+      <div className="flex h-full gap-1">
+        <SideNav />
+        <main className="grow">{children}</main>
+      </div>
     </section>
   );
 }
