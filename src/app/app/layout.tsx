@@ -14,7 +14,7 @@ export default function AppLayout({
   children: ReactNode;
 }>) {
   return (
-    <section className="bg-dark flex flex-col gap-y-1 p-1">
+    <section className="flex h-screen flex-col gap-y-1 bg-dark p-1">
       <Topbar>Test</Topbar>
       <div className="flex h-full gap-1">
         <SideNav />
