@@ -1,10 +1,8 @@
-import NextAuth from "next-auth";
-import authConfig from "./auth-config";
+import { auth } from "./auth";
 
-const { auth } = NextAuth(authConfig);
-
-export default auth((req) => {
-  console.log("test", req);
+export default auth(async (req) => {
+  const isLoggedIn = !!req.auth;
+  console.log(isLoggedIn, "middleware");
 });
 
 export const config = {

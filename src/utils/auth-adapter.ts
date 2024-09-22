@@ -9,7 +9,7 @@ import {
 
 export function AuthRestAdapter(): Adapter {
   const client = axios.create({
-    baseURL: `/`,
+    baseURL: `${process.env.BACKEND_URL}/auth`,
     headers: {
       "Content-Type": "application/json",
       "x-auth-secret": process.env.AUTH_SECRET || "",
