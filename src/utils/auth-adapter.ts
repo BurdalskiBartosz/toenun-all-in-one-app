@@ -14,6 +14,7 @@ export function AuthRestAdapter(): Adapter {
       "Content-Type": "application/json",
       "x-auth-secret": process.env.AUTH_SECRET || "",
     },
+    withCredentials: true,
   });
 
   return {
