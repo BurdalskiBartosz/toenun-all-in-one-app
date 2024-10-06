@@ -9,7 +9,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     session({ session, user }) {
-      console.log("session");
       session.user.id = user.id;
       return session;
     },
