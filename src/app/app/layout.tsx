@@ -15,7 +15,13 @@ export default function AppLayout({
 }>) {
   return (
     <section className="flex h-screen flex-col gap-y-1 bg-dark p-1">
-      <Topbar>Test</Topbar>
+      <Topbar>
+        <div className="flex h-full items-center justify-between px-2 py-1">
+          <span>hamburger</span>
+          <span>search</span>
+          <span>profile</span>
+        </div>
+      </Topbar>
       <div className="flex h-full gap-1">
         <SideNav />
         <main className="grow">{children}</main>
