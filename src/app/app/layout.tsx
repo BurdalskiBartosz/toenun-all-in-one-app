@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import SideNav from "@/components/app/Navigations/SideNav";
 import Topbar from "@/components/app/Navigations/Topbar";
 import type { Metadata } from "next";
@@ -14,8 +13,6 @@ export default async function AppLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const sess = await auth();
-  console.log(sess);
   return (
     <section className="flex h-screen flex-col gap-y-1 bg-dark p-1">
       <Topbar>
