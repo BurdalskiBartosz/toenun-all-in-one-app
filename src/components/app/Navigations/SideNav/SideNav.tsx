@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SideNav() {
   return (
-    <div className="bg-dark flex flex-col border-r-[2px] border-r-white">
+    <div className="flex flex-col border-r-[2px] border-r-white bg-dark">
       <nav className="py-4 pr-9">
         <ul className="flex list-none flex-col gap-3">
           {appRoutes.map((route, i) => {
