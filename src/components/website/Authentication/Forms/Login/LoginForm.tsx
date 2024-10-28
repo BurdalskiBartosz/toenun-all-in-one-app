@@ -6,9 +6,12 @@ import { loginSchema } from "@/utils/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 
 export default function LoginForm() {
+  const [isPending, startTransition] = useTransition();
+
   const router = useRouter();
 
   const {
@@ -20,13 +23,11 @@ export default function LoginForm() {
   });
 
   async function onSubmit(data: LoginFormType) {
-    try {
-      await login(data);
-
-      router.push("/app/dashboard");
-    } catch (e) {
-      console.error(e);
-    }
+    startTransition(async () => {
+      const response = await login(data);
+      console.log(response);
+      // router.push("/app/dashboard");
+    });
   }
 
   return (
