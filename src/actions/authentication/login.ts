@@ -5,18 +5,28 @@ import type { LoginFormType } from "@/types/forms";
 import { loginSchema } from "@/utils/validations";
 import { AuthError } from "next-auth";
 
-export async function login(values: LoginFormType) {
-  const parsedValues = loginSchema.safeParse(values);
+type LoginTypes = "credentials" | "github";
 
-  if (!parsedValues.success) {
-    return { error: "Invalid data!" };
-  }
+export async function login(type: LoginTypes, values?: LoginFormType) {
   try {
-    await signIn("credentials", values);
+    if (type !== "credentials") {
+      await signIn(type, {
+        callbackUrl: "/app/dashboard",
+      });
+      return;
+    }
+
+    const parsedValues = loginSchema.safeParse(values);
+
+    if (!parsedValues.success) {
+      return { error: "Invalid data!" };
+    }
+    await signIn(type, values);
   } catch (error) {
     if (error instanceof AuthError) {
       throw error;
     }
+    console.error(error);
   }
 }
 

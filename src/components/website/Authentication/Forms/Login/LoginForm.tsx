@@ -4,7 +4,6 @@ import Input from "@/components/website/Form/Input";
 import type { LoginFormType } from "@/types/forms";
 import { loginSchema } from "@/utils/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -24,7 +23,7 @@ export default function LoginForm() {
 
   async function onSubmit(data: LoginFormType) {
     startTransition(async () => {
-      const response = await login(data);
+      const response = await login("credentials", data);
       console.log(response);
       // router.push("/app/dashboard");
     });
@@ -55,9 +54,7 @@ export default function LoginForm() {
       <button
         className="mt-1 rounded bg-red-500 p-2"
         onClick={() => {
-          signIn("github", {
-            callbackUrl: "/app/dashboard",
-          });
+          login("github");
         }}
       >
         Github
