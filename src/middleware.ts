@@ -1,8 +1,33 @@
 import { auth } from "./auth";
 
-export default auth(async (req) => {
+const publicRoutes = ["/"];
+const authRoutes = ["/login", "/registration"];
+
+const apiPrefix = "/api/auth";
+
+export default auth((req) => {
+  const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
-  console.log(isLoggedIn, "middleware");
+
+  const isApiRoute = nextUrl.pathname.startsWith(apiPrefix);
+  const isPublic = publicRoutes.includes(nextUrl.pathname);
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
+  if (isApiRoute) {
+    return;
+  }
+
+  if (isAuthRoute) {
+    if (isLoggedIn) {
+      return Response.redirect(new URL("/app/dashboard", nextUrl));
+    }
+    return;
+  }
+
+  if (!isLoggedIn && !isPublic) {
+    return Response.redirect(new URL("/login", nextUrl));
+  }
+  return;
 });
 
 export const config = {
