@@ -11,7 +11,7 @@ export async function login(type: LoginTypes, values?: LoginFormType) {
   try {
     if (type !== "credentials" || !values) {
       await signIn(type, {
-        // redirectTo: "/app/dashboard",
+        redirectTo: "/app/dashboard",
       });
       return;
     }

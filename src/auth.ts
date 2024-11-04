@@ -1,4 +1,6 @@
 import NextAuth from "next-auth";
+import { encode as defaultEncode } from "next-auth/jwt";
+import { v4 as uuid } from "uuid";
 import authConfig from "./auth-config";
 import { AuthRestAdapter } from "./utils/auth-adapter";
 
@@ -8,38 +10,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   //   signIn: "/login",
   // },
   callbacks: {
-    session({ session, user }) {
-      session.user.id = user.id;
-      return session;
-    },
-    async jwt({ token, user, account }) {
-      console.log(token, user, account);
+    async jwt({ token, account }) {
       if (account?.provider === "credentials") {
-        const expires = new Date(Date.now() + 60 * 60 * 24 * 30 * 1000);
-        const sessionToken = "c1accd0f-d312-41cc-ab2b-0cf1a9c31886"; //randomUUID
-        console.log({
-          userId: user.id!,
-          sessionToken,
-          expires,
-        });
-
-        const session = await AuthRestAdapter().createSession!({
-          userId: user.id!,
-          sessionToken,
-          expires,
-        });
-
-        await AuthRestAdapter().linkAccount!({
-          userId: user.id!,
-          type: "email",
-          providerAccountId: account.providerAccountId,
-          provider: account.provider,
-        });
-
-        token.sessionId = session.sessionToken;
+        token.credentials = true;
       }
-
       return token;
+    },
+  },
+  jwt: {
+    encode: async (params) => {
+      if (params.token?.credentials) {
+        const sessionToken = uuid();
+
+        if (!params.token.sub) {
+          throw new Error("No user ID found in token");
+        }
+
+        const createdSession = await AuthRestAdapter()?.createSession?.({
+          sessionToken,
+          userId: params.token.sub,
+          expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+        });
+
+        if (!createdSession) {
+          throw new Error("Failed to create session");
+        }
+
+        return sessionToken;
+      }
+      return defaultEncode(params);
     },
   },
   session: {
