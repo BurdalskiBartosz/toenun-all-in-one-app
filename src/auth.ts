@@ -6,9 +6,6 @@ import { AuthRestAdapter } from "./utils/auth-adapter";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: AuthRestAdapter(),
-  // pages: {
-  //   signIn: "/login",
-  // },
   callbacks: {
     async jwt({ token, account }) {
       if (account?.provider === "credentials") {
