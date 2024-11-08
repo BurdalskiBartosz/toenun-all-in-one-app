@@ -20,7 +20,7 @@ export function AuthRestAdapter(): Adapter {
 
   return {
     createUser: async (user: Omit<AdapterUser, "id">) => {
-      return await createUser(user);
+      return createUser(user);
       // const response = await client.post("/", user);
       // return format<AdapterUser>(response.data);
     },

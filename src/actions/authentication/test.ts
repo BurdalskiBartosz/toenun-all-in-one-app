@@ -1,27 +1,17 @@
 "use server";
 
+import { fetchFn } from "@/utils/fetchFn";
 import { AdapterUser } from "next-auth/adapters";
 
 const BASE_AUTH_URL = `${process.env.BACKEND_URL}/auth`;
 
-const fetchFn = async <T>(baseUrl: string, input: T) => {
-  const response = await fetch(baseUrl, {
-    method: "POST",
-    body: JSON.stringify(input),
-    headers: {
-      "Content-Type": "application/json",
-      "x-auth-secret": process.env.AUTH_SECRET || "",
-    },
-  });
-  const data = await response.json();
-  return data;
-};
-
 export async function createUser(user: Omit<AdapterUser, "id">) {
-  const data = await fetchFn(BASE_AUTH_URL, user);
-  console.log("test", data);
-  // const response = await client.post("/", user);
-  return format<AdapterUser>(data);
+  const data = await fetchFn(BASE_AUTH_URL, {
+    method: "POST",
+    body: JSON.stringify(user),
+  });
+
+  return format<AdapterUser>(data as Record<string, unknown>);
 }
 
 function format<T>(obj: Record<string, unknown>): T {
