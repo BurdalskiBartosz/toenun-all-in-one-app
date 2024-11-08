@@ -1,3 +1,4 @@
+import { createUser } from "@/actions/authentication/test";
 import axios from "axios";
 import {
   Adapter,
@@ -19,8 +20,9 @@ export function AuthRestAdapter(): Adapter {
 
   return {
     createUser: async (user: Omit<AdapterUser, "id">) => {
-      const response = await client.post("/", user);
-      return format<AdapterUser>(response.data);
+      return await createUser(user);
+      // const response = await client.post("/", user);
+      // return format<AdapterUser>(response.data);
     },
     getUserByEmail: async (email: string) => {
       const response = await client.get("/", { params: { email } });
