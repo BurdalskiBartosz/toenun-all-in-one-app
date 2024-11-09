@@ -1,6 +1,6 @@
 export const fetchFn = async <T>(
   baseUrl: string,
-  rest: RequestInit,
+  rest?: RequestInit,
 ): Promise<T> => {
   const response = await fetch(baseUrl, {
     headers: {
