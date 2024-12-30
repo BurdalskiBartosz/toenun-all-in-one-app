@@ -1,6 +1,6 @@
 "use client";
 import { login } from "@/actions/authentication/login";
-import Input from "@/components/website/Form/Input";
+import Input from "@/components/ui/Input";
 import type { LoginFormType } from "@/types/forms";
 import { loginSchema } from "@/utils/validations";
 import { zodResolver } from "@hookform/resolvers/zod";

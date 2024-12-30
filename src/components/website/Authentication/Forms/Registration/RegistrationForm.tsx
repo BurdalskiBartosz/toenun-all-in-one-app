@@ -1,5 +1,5 @@
 "use client";
-import Input from "@/components/website/Form/Input";
+import Input from "@/components/ui/Input";
 import { RegistrationFormType } from "@/types/forms";
 import { registrationSchema } from "@/utils/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
