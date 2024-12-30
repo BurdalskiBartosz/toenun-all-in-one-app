@@ -1,4 +1,4 @@
-import Logo from "@/components/shared/Logo";
+import Logo from "@/components/ui/Logo";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ReactNode } from "react";
