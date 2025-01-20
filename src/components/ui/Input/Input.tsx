@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={cx(
-            "peer h-10 border-b-2 border-black bg-transparent px-2 placeholder-transparent  focus:outline-none",
+            "peer h-10 border-b-2 border-black bg-transparent px-2 placeholder-transparent focus:outline-none",
             {
               "text-gray-600": !error,
               "border-red-600 text-red-600": error,
@@ -27,7 +27,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         />
         <label
           className={cx(
-            "absolute -top-3 left-0 mx-1 cursor-text  px-1 text-sm  transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base  peer-focus:-top-3 peer-focus:text-sm ",
+            "absolute -top-3 left-0 mx-1 cursor-text px-1 text-sm transition-all peer-placeholder-shown:top-2 peer-placeholder-shown:text-base peer-focus:-top-3 peer-focus:text-sm",
           )}
         >
           {label}
