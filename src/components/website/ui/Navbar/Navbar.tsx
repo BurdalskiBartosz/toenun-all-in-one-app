@@ -1,5 +1,5 @@
 import { websiteRoutes } from "@/constants";
-import Navlink from "../Navlink";
+import Navlink from "../components/Navlink";
 
 export default function Navbar() {
   return (
