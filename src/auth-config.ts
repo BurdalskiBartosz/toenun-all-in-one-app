@@ -5,7 +5,7 @@ import Github from "next-auth/providers/github";
 
 const getUser = async () => {
   return {
-    id: "cm2x1m6fu000014ayavmaolg9",
+    id: "cm83rrrf00000v9uoomz8240o",
     email: "bosokpl13@gmail.com",
   };
 };
